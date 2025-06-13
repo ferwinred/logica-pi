@@ -20,24 +20,25 @@ public class ProyectoBiblioteca {
         int option = 0;
         int opt2 = 0;
         int opt3 = 0;
+        int salirLibros = 0;
+        int favoritosSalir = 0;
         Scanner entrada = new Scanner(System.in);
         
         libro libros[] = {
             new libro ("el señor de los anillos", "J. R. R. Tolkien", true, "Novela"),
-         new libro ("Cien años de soledad", "Gabriel Garcia Marquez", true, "Novela"),
-         new libro ("Aprende a programar en Java: de cero al infinito", "Osvaldo Cairó", true, "Tecnologia"),
-        new libro ("Introducción a la Psicología", "Paul Kleinman", true, "Psicología"),
-         new libro ("Tulio en su salsa: recetas, historias y recomendaciones", "Tulio Zuloaga", true, "Cocina"),
-      
+            new libro ("Cien años de soledad", "Gabriel Garcia Marquez", true, "Novela"),
+            new libro ("Aprende a programar en Java: de cero al infinito", "Osvaldo Cairó", true, "Tecnologia"),
+            new libro ("Introducción a la Psicología", "Paul Kleinman", true, "Psicología"),
+            new libro ("Tulio en su salsa: recetas, historias y recomendaciones", "Tulio Zuloaga", true, "Cocina"),
         };
+
         Scanner selection = new Scanner(System.in);
         
         do {
             System.out.println("Menu de tu biblioteca online");
             System.out.println("Ingrese el numero de opcion de su eleccion: ");
             System.out.println("1. Libros");
-            System.out.println("2. Prestamos");
-            System.out.println("3. Libros Favoritos");
+            System.out.println("2. Libros Favoritos");
             System.out.println("0. Salir");
             
             option = selection.nextInt();
@@ -55,7 +56,8 @@ public class ProyectoBiblioteca {
                        
                        opt2 = selection.nextInt();
                        
-                       switch(opt2){
+                       do {
+                            switch(opt2){
                            case 1: 
                                System.out.println("Todos nuestros libros: ");
                                for (int i = 0; i<libros.length; i++) {
@@ -128,17 +130,41 @@ public class ProyectoBiblioteca {
                                                 }  
                                            } 
                                        default:
-                                           
                                            break;
                                    }
                                } while(opt3 != 0);
                            default:
                                break;  
-                       }          
+                       }  
+
+                        System.out.println("");
+                        System.out.println("0. atras");
+
+                       } while(salirLibros != 0);
+                       
                     } while(opt2 != 0);
                     break;
                 case 2:
                     
+                    libro librosFavoritos[] = {
+                        new libro ("el señor de los anillos", "J. R. R. Tolkien", true, "Novela"),
+                        new libro ("Tulio en su salsa: recetas, historias y recomendaciones", "Tulio Zuloaga", true, "Cocina")
+                    };
+
+                    do {
+
+                         for(int i=0; i<librosFavoritos.length; i++) {
+                                System.out.println(String.format("* Libro: %s - Autor: %s - %s", librosFavoritos[i].titulos, librosFavoritos[i].autor, librosFavoritos[0].disponible));
+                         }
+                        System.out.println("");
+                        System.out.println("0. Atras");
+
+                    } while(favoritosSalir != 0);
+
+                    break;
+                
+                default:
+                    break;
             }
         }
         while(option!=0);
