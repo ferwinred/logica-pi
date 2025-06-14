@@ -22,7 +22,9 @@ public class ProyectoBiblioteca {
         int opt3 = 0;
         int salirLibros = 0;
         int favoritosSalir = 0;
+        int salirCategorias = 0;
         Scanner entrada = new Scanner(System.in);
+        String[] librosnuevos=new String[5];
         
         libro libros[] = {
             new libro ("el señor de los anillos", "J. R. R. Tolkien", true, "Novela"),
@@ -31,8 +33,6 @@ public class ProyectoBiblioteca {
             new libro ("Introducción a la Psicología", "Paul Kleinman", true, "Psicología"),
             new libro ("Tulio en su salsa: recetas, historias y recomendaciones", "Tulio Zuloaga", true, "Cocina"),
         };
-
-        Scanner selection = new Scanner(System.in);
         
         do {
             System.out.println("Menu de tu biblioteca online");
@@ -41,7 +41,7 @@ public class ProyectoBiblioteca {
             System.out.println("2. Libros Favoritos");
             System.out.println("0. Salir");
             
-            option = selection.nextInt();
+            option = entrada.nextInt();
             
             switch(option){
                 case 1: 
@@ -54,7 +54,7 @@ public class ProyectoBiblioteca {
                        System.out.println("4. Categorias");
                        System.out.println("0. Salir");
                        
-                       opt2 = selection.nextInt();
+                       opt2 = entrada.nextInt();
                        
                        do {
                             switch(opt2){
@@ -73,8 +73,13 @@ public class ProyectoBiblioteca {
                                                 }  
                                            } 
                                break;
-                           case 3: 
-                               
+                           case 3:
+                               System.out.println("digite su libro");
+                               for(int i=0;i<4;i++)
+                               {
+                                   librosnuevos[i]=entrada.next();
+                               }
+                               //System.out.println("Lo sentimos pero solo los administradores pueden agregar libros");
                                break;
                            case 4:
                                do {
@@ -87,9 +92,10 @@ public class ProyectoBiblioteca {
                                    System.out.println("0. Salir");
                                
                                    
-                                   opt3 = selection.nextInt();
+                                   opt3 = entrada.nextInt();
                                    
-                                   switch (opt3) {
+                                   do {
+                                       switch (opt3) {
                                        case 1:
                                            System.out.println("Libros de categoria Novelas: ");
                                            for(int i=0; i<libros.length; i++) {
@@ -119,7 +125,9 @@ public class ProyectoBiblioteca {
                                             for(int i=0; i<libros.length; i++) {
                                                if(libros[i].categoria == "Psicologia"){
                                                System.out.println(String.format("* Libro: %s - Autor: %s - %s", libros[i].titulos, libros[i].autor, libros[0].disponible));
-                                                }  
+                                                } else {
+                                                   System.out.println("No hay libros disponibles en este momento");
+                                               } 
                                            } 
                                            break;
                                        case 5:
@@ -132,6 +140,13 @@ public class ProyectoBiblioteca {
                                        default:
                                            break;
                                    }
+                               System.out.println("");
+                        System.out.println("0. atras");
+                        
+                        salirCategorias = entrada.nextInt();
+                                   }
+                                   while(salirCategorias != 0);
+                                  
                                } while(opt3 != 0);
                            default:
                                break;  
@@ -139,7 +154,8 @@ public class ProyectoBiblioteca {
 
                         System.out.println("");
                         System.out.println("0. atras");
-
+                        
+                        salirLibros = entrada.nextInt();
                        } while(salirLibros != 0);
                        
                     } while(opt2 != 0);
